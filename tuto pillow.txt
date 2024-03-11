@@ -1,0 +1,39 @@
+#from PIL import Image, ImageDraw, ImageFont
+
+# Création d'une image vierge avec un fond transparent
+#image = Image.new('RGBA', (200, 100), (255, 255, 255, 0))
+
+# Initialisation de l'objet draw pour écrire du texte
+#draw = ImageDraw.Draw(image)
+
+# Définition de la police, de la taille et de la couleur
+#font = ImageFont.truetype('arial.ttf', size=30)
+#color = (255, 0, 0)
+
+# Écriture du texte avec la police, la taille et la couleur définies
+#draw.text((10, 10), 'Hello world!', font=font, fill=color)
+
+# Enregistrement de l'image
+#image.save('output.png')
+
+# Création d'une image vierge
+#img = Image.new('RGB', (500, 500), color = (255, 255, 255))
+
+# Initialisation de l'objet ImageDraw pour écrire du texte
+#d = ImageDraw.Draw(img)
+
+# Définition de la police et de la taille
+#font = ImageFont.truetype("arial.ttf", 36)
+
+# Définition de la couleur du texte
+#color = (0, 0, 255)
+
+# Définition des coordonnées du coin supérieur gauche du texte
+#x = 10
+#y = 10
+
+# Écriture du texte à l'emplacement souhaité
+#d.text((x, y), "Hello, World!", font=font, fill=color)
+
+# Enregistrement de l'image
+#img.save('output.png')

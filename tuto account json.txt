@@ -1,0 +1,18 @@
+from os import path
+import json
+THIS_FOLDER = path.dirname(path.abspath(__file__)) #definir la fonction 
+emailfile=path.join(THIS_FOLDER,"accounts.json") #chercher le fichier
+dictlist=[] #la ou on met les info
+import time
+import aminofix as amino
+def threadit(acc : dict): # definir la fonction 
+    email=acc["email"] # Assigns the value of 
+    password=acc["password"] # Assigns the 
+    client=amino.Client(acc["device"])
+
+def yo():
+    print(f"{len(dictlist)} accounts loaded")
+    for amp in dictlist:
+        threadit(amp)
+        
+yo() 
