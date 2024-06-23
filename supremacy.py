@@ -43,18 +43,13 @@ import re
 
 
 #mention = data.subClient.get_message_info(chatId=data.chatId, messageId=data.messageId).mentionUserIds
-moi = "a92d7072-c06d-45d3-bf5f-b8bf3846e552"
-bot_black = "ed113109-3adc-4e1f-b14f-b57ad7a2d920"
-# 79964099 anime mangas scan
-# 93307693 univers perdu
-# 180011716 Laboratoire
-#114703339 village pommer
+moi = "my_userId"
+bot_black = "Bot_userId"
 
-email="piceb83804@avidapro.com"
-mdp="sosooo"
 
-#email="seyaco4342@backva.com"
-#mdp="sosooo"
+email="email"
+mdp="password"
+
 
 client = BotAmino(email=email, password=mdp)
 #s = client.sid
@@ -70,7 +65,7 @@ client.activity = True
 client.wait = 3
 client.spam_message = "calme down tu spam"
 
-#uri = "mongodb+srv://Soso_Supremacy:<Supremacy123>@supremacydb.ukceghk.mongodb.net/?retryWrites=true&w=majority"
+#uri = ""
 #climongo = MongoClient(uri, server_api=ServerApi('1'))
 #try:
 #   climongo.admin.command('ping')
@@ -81,16 +76,13 @@ client.spam_message = "calme down tu spam"
 
 
 def sosoo(data):
-    return data.authorId in ('a92d7072-c06d-45d3-bf5f-b8bf3846e552')
+    return data.authorId in ('userId')
 
-def ikouille(data):
-    return data.authorId in ("b3c859d0-983d-4a10-a6d1-eb11eebbf2e3")
 def staff(data):
-    return data.authorId in ("a92d7072-c06d-45d3-bf5f-b8bf3846e552") or data.subClient.is_in_staff(data.authorId)
+    return data.authorId in ("userId") or data.subClient.is_in_staff(data.authorId)
 
-
-def supremacy(data):
-    return data.authorId in ("a92d7072-c06d-45d3-bf5f-b8bf3846e552") or ('b3c859d0-983d-4a10-a6d1-eb11eebbf2e3')
+def doubles(data):
+    return data.authorId in ("userId") or ('userId')
 
 def not_staff(data):
     membre = data.subClient.get_user_info(data.authorId).role == 0
@@ -140,7 +132,7 @@ def on_pv(data):
 
 
 def on_chat(data):
-    chat = client.get_from_code("http://aminoapps.com/p/rzt9i6").objectId
+    chat = client.get_from_code("http://aminoapps.com/p/communityId").objectId
     return data.chatId in chat
 
 
@@ -149,7 +141,7 @@ def on_chat(data):
 def bio(data):
     bio = data.message
     data.subClient.edit_profile(content=f"{bio}")
-    data.subClient.send_message(message=f"la bio vient d'etre modifiée",chatId=data.chatId)
+    data.subClient.send_message(message=f"content",chatId=data.chatId)
 
 
 @client.command()
@@ -185,8 +177,7 @@ def delcom(data):
 
 @client.command()
 def notif(data):
-    notiff = ["ema", "soso","bot", "haahahahahah", "naaan jureee", "je suis une coccinelle",
-              "je m'en fouuu ", "je t'aime trop", "oui et toi ", "non", "oui"," celui qui a ecrit au dessus est gay", "saya bouge", "ceux qui m'insulte sont des gros nul "]
+    notiff = ['leve toi !', 'reveille toi']
     while True:
        time.sleep(10)
        data.subClient.send_message(message=random.choice(notiff), chatId=data.chatId)
@@ -247,7 +238,7 @@ def vbio(data):
 @client.command()
 def thote(data):
     rid = data.subClient.get_notice_list(size=25).author.requestId #le bon request ID
-    data.subClient.transfer_host(chatId=data.chatId, userIds=["d544eaf9-1eb2-4c0d-b361-0844eabcb8c0"])
+    data.subClient.transfer_host(chatId=data.chatId, userIds=["userId"])
     for nid in rid:
         data.subClient.accept_host(chatId=data.chatId, requestId=nid)
     data.subClient.send_message(message="hop la", chatId=data.chatId)
@@ -320,7 +311,7 @@ def bu(data):
 
 @client.command()
 def debilos(data):
-    data.subClient.kick(userId="49f82a71-7a67-4999-a71b-b73ad040781d", chatId=data.chatId, allowRejoin=True)
+    data.subClient.kick(userId="userId", chatId=data.chatId, allowRejoin=True)
 
 
 @client.command(condition=staff)
@@ -431,18 +422,6 @@ def join(data):
 def coms(data):
     a = client.search_community(aminoId=data.message).name
     data.subClient.send_message(message=f"{a}", chatId=data.chatId)
-
-@client.command(condition=bloque)
-def sex(data):
-    cpublic = data.subClient.get_public_chat_threads(size=25).chatId
-    for chat in cpublic:
-        if data.chatId == chat:
-            data.subClient.send_message(message="commande dispo que en pv", chatId=data.chatId)
-            break
-        else:
-            sex = open("Ahhh.mp3", 'rb')
-            data.subClient.send_message(fileType="audio", file=sex, chatId=data.chatId)
-            break
 
 
 @client.command(condition=sosoo)
@@ -998,7 +977,6 @@ def chatid(data):
     data.subClient.send_message(message=f"{data.chatId}", chatId=data.chatId)
 
 
-
 @client.command()
 def pv(data):
     data.subClient.start_chat(data.authorId, message=f"[i]me voila dans tes pv {data.author}\n  !")
@@ -1282,19 +1260,6 @@ def info(data):
     data.subclient.send_message(message="[ci]Hé là je suis un bot cree par soso lui meme je peux accueillir les nouveaux je peux faire toute sorte de chose et surtout soso supremacy")
 
 
-@client.command("os")
-def gay(data):
-    pede = ['🏳‍🌈 Vous êtes gay/lesbienne à: 0%', '🏳‍🌈 Vous êtes gay/lesbienne à: 0.5%',
-            '🏳‍🌈 Vous êtes gay/lesbienne à: 1%', '🏳‍🌈 Vous êtes gay/lesbienne à: 2.56%',
-            '🏳‍🌈 Vous êtes gay/lesbienne à: 3%', '🏳‍🌈 Vous êtes gay/lesbienne à: 5%',
-            '🏳‍🌈 Vous êtes gay/lesbienne à: 13.45%', '🏳‍🌈 Vous êtes gay/lesbienne à: 23.75%',
-            '🏳‍🌈 Vous êtes gay/lesbienne à: 35.93%', '🏳‍🌈 Vous êtes gay/lesbienne à: 41.99%',
-            '🏳‍🌈 Vous êtes gay/lesbienne à: 49%', '🏳‍🌈 Vous êtes gay/lesbienne à: 69.34%',
-            '🏳‍🌈 Vous êtes gay/lesbienne à: 79.33%', '🏳‍🌈 Vous êtes gay/lesbienne à: 95.55%',
-            '🏳‍🌈 Vous êtes gay/lesbienne à: 100%', 'Vous êtes hétéro.', 'Vous êtes hétéro.', 'Vous êtes hétéro.']
-    user = data.author
-    data.subClient.send_message(message=f"{user}" +""+ str(random.choice(pede)), chatId=data.chatId)
-
 
 @client.command()
 def regle(data):
@@ -1393,9 +1358,6 @@ def online(data):
     data.subClient.send_message(data.chatId,f"voici la liste des personne connecter : "
                                             f"{on}")
 
-@client.command(condition=sosoo)
-def fiou(data):
-    data.subClient.kick(userId="b3c859d0-983d-4a10-a6d1-eb11eebbf2e3", chatId=data.chatId, allowRejoin=True)
 
 @client.command()
 def act(data):
@@ -1462,7 +1424,7 @@ def profile(data):
     pp_init.save("pdp.png")
     with Image.open(toto) as im:
         im_res = im.resize((900, 600)).save("iku.png")
-    fond = Image.open("iku.png")
+    fond = Image.open("AAAA.png")
     draw = ImageDraw.Draw(fond)
     font_nom = ImageFont.truetype('georgiaz.ttf', size=80)
     fontbase = ImageFont.truetype('georgiaz.ttf', size=50)
@@ -1488,8 +1450,8 @@ def profile(data):
             txt = f"{nom}"
             pos = (350, 40)
             fond.paste(pp_init, pos, pp_init)
-            fond.save("ikouille.png")
-            fnl = open("ikouille.png", 'rb')
+            fond.save("BBBB.png")
+            fnl = open("BBBB.png", 'rb')
             data.subClient.full_embed(link=" ", image=fnl, message=txt, chatId=data.chatId)
     elif grade == 101:
         with Image.open(cura) as cur:
@@ -1500,8 +1462,8 @@ def profile(data):
             txt = f"{nom}"
             pos = (350, 40)
             fond.paste(pp_init, pos, pp_init)
-            fond.save("ikouille.png")
-            fnl = open("ikouille.png", 'rb')
+            fond.save("BBBB.png")
+            fnl = open("BBBB.png", 'rb')
             data.subClient.full_embed(link=" ", image=fnl, message=txt, chatId=data.chatId)
     else:
         with Image.open(memb) as mem:
@@ -1512,154 +1474,13 @@ def profile(data):
     txt = f"{nom}"
     pos = (350, 40)
     fond.paste(pp_init, pos, pp_init)
-    fond.save("ikouille.png")
-    fnl = open("ikouille.png", 'rb')
+    fond.save("BBBB.png")
+    fnl = open("BBBB.png", 'rb')
     data.subClient.full_embed(link=" ", image=fnl, message=txt, chatId=data.chatId)
 
 
 
-@client.command()
-def guess(data):
-    lolo = ("guess.png")
-    nom = data.subClient.get_user_info("ffb0aed3-f342-4513-886e-2c526949800b").nickname
-    pdp = data.subClient.get_user_info("ffb0aed3-f342-4513-886e-2c526949800b").icon
-    lvl = data.subClient.get_user_info("ffb0aed3-f342-4513-886e-2c526949800b").level
-    rep = data.subClient.get_user_info(userId=data.authorId).reputation
-    response = requests.get(f"{pdp}")
-    file = open("pdp.png", "wb")
-    file.write(response.content)
-    file.close()
-    pp_init = Image.open("pdp.png")
-    pp_init = pp_init.resize((200, 200))
-    mask = Image.new('L', (200, 200), 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, 200, 200), fill=(255), outline=(0))
-    pp_init.putalpha(mask)
-    pp_init = pp_init.resize((300, 300))
-    pp_init.save("pdp.png")
-    with Image.open(lolo) as im:
-        im_res = im.resize((900, 600)).save("guess.png")
-    fond = Image.open("guess.png")
-    draw = ImageDraw.Draw(fond)
-    font_nom = ImageFont.truetype('georgiaz.ttf', size=90)
-    font_bienvenue = ImageFont.truetype('georgiaz.ttf', size=40)
-    rouge = (255, 0, 0)
-    draw.text((250, 30), f'   {nom}', font=font_nom, fill=rouge)
-    draw.text((50, 450), f'      Noir    Aigris    Dark sasuke', font=font_bienvenue, fill=rouge)
-    txt = f"{nom} : Je vais te debiter"
-    pos = (300, 120)
-    fond.paste(pp_init, pos, pp_init)
-    fond.save("ikouille.png")
-    fnl = open("ikouille.png", 'rb')
-    data.subClient.full_embed(link=" ", image=fnl, message=txt, chatId=data.chatId)
 
-
-@client.command()
-def pino(data):
-    lolo = ("pino.png")
-    nom = data.subClient.get_user_info("fd647cca-23a9-43ee-a4cf-e154553b2e47").nickname
-    pdp = data.subClient.get_user_info("fd647cca-23a9-43ee-a4cf-e154553b2e47").icon
-    lvl = data.subClient.get_user_info("fd647cca-23a9-43ee-a4cf-e154553b2e47").level
-    rep = data.subClient.get_user_info(userId=data.authorId).reputation
-    response = requests.get(f"{pdp}")
-    file = open("pdp.png", "wb")
-    file.write(response.content)
-    file.close()
-    pp_init = Image.open("pdp.png")
-    pp_init = pp_init.resize((200, 200))
-    mask = Image.new('L', (200, 200), 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, 200, 200), fill=(255), outline=(0))
-    pp_init.putalpha(mask)
-    pp_init = pp_init.resize((300, 300))
-    pp_init.save("pdp.png")
-    with Image.open(lolo) as im:
-        im_res = im.resize((900, 600)).save("pino.png")
-    fond = Image.open("pino.png")
-    draw = ImageDraw.Draw(fond)
-    font_nom = ImageFont.truetype('georgiaz.ttf', size=90)
-    font_bienvenue = ImageFont.truetype('georgiaz.ttf', size=60)
-    noir = (0, 0, 0)
-    draw.text((250, 30), f'   {nom}', font=font_nom, fill=noir)
-    draw.text((50, 450), f'      Ombre    genie   folie', font=font_bienvenue, fill=noir)
-    txt = f"{nom} : Que le desaroi commence !"
-    pos = (280, 120)
-    fond.paste(pp_init, pos, pp_init)
-    fond.save("ikouille.png")
-    fnl = open("ikouille.png", 'rb')
-    data.subClient.full_embed(link=" ", image=fnl, message=txt, chatId=data.chatId)
-
-
-@client.command()
-def ema(data):
-    lolo = ("ema.png")
-    nom = data.subClient.get_user_info("51b0ae7d-bb09-471f-a0bc-5cb7c6e82bca").nickname
-    pdp = data.subClient.get_user_info("51b0ae7d-bb09-471f-a0bc-5cb7c6e82bca").icon
-    lvl = data.subClient.get_user_info("51b0ae7d-bb09-471f-a0bc-5cb7c6e82bca").level
-    rep = data.subClient.get_user_info(userId=data.authorId).reputation
-    response = requests.get(f"{pdp}")
-    file = open("pdp.png", "wb")
-    file.write(response.content)
-    file.close()
-    pp_init = Image.open("pdp.png")
-    pp_init = pp_init.resize((200, 200))
-    mask = Image.new('L', (200, 200), 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, 200, 200), fill=(255), outline=(0))
-    pp_init.putalpha(mask)
-    pp_init = pp_init.resize((300, 300))
-    pp_init.save("pdp.png")
-    with Image.open(lolo) as im:
-        im_res = im.resize((900, 600)).save("ema.png")
-    fond = Image.open("ema.png")
-    draw = ImageDraw.Draw(fond)
-    font_nom = ImageFont.truetype('georgiaz.ttf', size=90)
-    font_bienvenue = ImageFont.truetype('georgiaz.ttf', size=40)
-    violet =(238, 130, 238)
-    draw.text((250, 30), f'   {nom}', font=font_nom, fill=violet)
-    draw.text((50, 450), f'  Rikiki    pas de gout    tfou3lick', font=font_bienvenue, fill=violet)
-    txt = f"{nom} : Vive les millefeuille"
-    pos = (300, 120)
-    fond.paste(pp_init, pos, pp_init)
-    fond.save("ikouille.png")
-    fnl = open("ikouille.png", 'rb')
-    data.subClient.full_embed(link=" ", image=fnl, message=txt, chatId=data.chatId)
-
-
-@client.command()
-def saya(data):
-    lolo = ("saya.png")
-    nom = data.subClient.get_user_info("9aa1bcc9-9d79-449f-898a-45ee44991120").nickname
-    pdp = data.subClient.get_user_info("9aa1bcc9-9d79-449f-898a-45ee44991120").icon
-    lvl = data.subClient.get_user_info("9aa1bcc9-9d79-449f-898a-45ee44991120").level
-    rep = data.subClient.get_user_info(userId=data.authorId).reputation
-    response = requests.get(f"{pdp}")
-    file = open("pdp.png", "wb")
-    file.write(response.content)
-    file.close()
-    pp_init = Image.open("pdp.png")
-    pp_init = pp_init.resize((200, 200))
-    mask = Image.new('L', (200, 200), 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, 200, 200), fill=(255), outline=(0))
-    pp_init.putalpha(mask)
-    pp_init = pp_init.resize((300, 300))
-    pp_init.save("pdp.png")
-    with Image.open(lolo) as im:
-        im_res = im.resize((900, 600)).save("saya.png")
-    fond = Image.open("saya.png")
-    draw = ImageDraw.Draw(fond)
-    font_nom = ImageFont.truetype('georgiaz.ttf', size=90)
-    font_bienvenue = ImageFont.truetype('georgiaz.ttf', size=40)
-    rouge = (255, 0, 0)
-    draw.text((250, 30), f'   {nom}', font=font_nom, fill=rouge)
-    draw.text((50, 450), f'  Bledart    Sorciere    Nikoumouk', font=font_bienvenue, fill=rouge)
-    txt = f"{nom} : je vais te jeter un sort "
-    pos = (300, 120)
-    fond.paste(pp_init, pos, pp_init)
-    fond.save("ikouille.png")
-    fnl = open("ikouille.png", 'rb')
-    data.subClient.full_embed(link=" ", image=fnl, message=txt, chatId=data.chatId)
 
 @client.command(condition=sosoo)
 def yougsup(data):
@@ -1677,21 +1498,7 @@ def on_message(data):
     comu_name = data.subClient.get_community_info(data.comId).name
     pfc = ["✌️", "✋", "✊", "👌"]
     pfc = random.choice(pfc)
-    rep = ['Tape dans le fond je suis pas ta mère 😡🖕', '- Non.😡',
-           'Je ne sais pas, réfléchis par toi-même😑',
-           '- Oui.🙂',
-           'Difficile de répondre, en effet.🤔', 'Redis le jai pas captew🤔',
-           'Êtes-vous sûr de vouloir le savoir ? 🙀',
-           'Lilalilalou😄☺️', 'Poupipoupipou😄☺️', 'Zoubizoubizou😄☺️', 'Ma viiie😄', 'tabarnak???',
-           ' Je ne sais pas. 😶‍🌫️', 'Je refléchis😶‍🌫️', ' euh ouai mais tg nan ? 😄 ', "ptdrrr t ki deja?🤔",
-           'Tu pu🤢',
-           'T’es aussi belle qu’une fleur😊', 'Tu sens tellement bon que je veut te croquer☺️', 'ratio😶',
-           'Je ne suis pas du même avis.', 'ouai mais nikoumouk en faite 😹🤙', 'bouge😡🖕',
-           'Va manger ta merde😒',
-           'J’te saute comme les tours jumelles😏', 'oui mon soumis🤠', 'oui maitre🤧', 'tais toi femme😌',
-           'quoicugênant🥺👉👈', 'Tes belle comme une hirondelle🥺', 'Starfoullah tes bizarre🤨']
-    antiema = ["ema ? je ne trahirai jamais soso ", "bouge ema", "valaba ema",
-               "tu sais quoi ema ? vive soso et kazen wouhouuu"]
+    rep = ['bonjou', 'Tu vas bien ?', 'Merci']
 
     print(
         f"pseudo :  {data.author}  | tchat :  {chat_name}  |  commu : {comu_name}  | message : {data.message}  |  {h}")
@@ -1704,7 +1511,7 @@ def on_message(data):
     if data.message.startswith("ouai"):
         data.subClient.send_message(data.chatId, message="stern")
     if data.message.startswith("?"):
-        if data.authorId == "51b0ae7d-bb09-471f-a0bc-5cb7c6e82bca":
+        if data.authorId == "userid":
             data.subClient.send_message(message=str(random.choice(antiema)), chatId=data.chatId)
         else:
             mention = data.subClient.get_message_info(chatId=data.chatId, messageId=data.messageId).mentionUserIds
@@ -1772,10 +1579,6 @@ def on_message(data):
 #client.launch(True)
 
 
-bot_commu = client.get_from_code("http://aminoapps.com/c/EhhhhLegoiste").comId
-Univers =  client.get_from_code("http://aminoapps.com/p/nm2bgp").comId
-village = client.get_from_code("http://aminoapps.com/c/villagepommers").comId
-shawn_commu = client.get_from_code("http://aminoapps.com/c/Tokyomanji00").comId
 
 #client.single_launch(Univers , True)
 client.single_launch(shawn_commu , True)
