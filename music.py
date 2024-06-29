@@ -7,7 +7,7 @@ import requests
 drivers = []
 music_chat=[]
 
-url="https://sosomb.soriba.repl.co" #use ur own url from replit
+url=" #use ur own url from replit"
 
 def checklive(data):
      return data.chatId in music_chat
