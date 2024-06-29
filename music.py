@@ -13,7 +13,7 @@ def checklive(data):
      return data.chatId in music_chat
 
 
-client = BotAmino("nilal34244@labebx.com","Soridu94")
+client = BotAmino("")
 
 
 def music_route(chatId=None,route=None,message=None):
